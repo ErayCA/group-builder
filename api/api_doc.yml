@@ -1,0 +1,1955 @@
+openapi: "3.0.2"
+info:
+  title: GroupBuilder API
+  version: "1.0"
+paths:
+  /affinity:
+    get:
+      responses:
+        "200":
+          description: Affinities were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /affinity/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Affinity ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: Affinity data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      affinityname:
+                        type: string
+                  status:
+                    type: integer
+
+        "404":
+          description: Affinity with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                affinityname:
+                  type: string
+      responses:
+        "200":
+          description: Affinity was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: Affinity was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: Affinity with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+                    
+  /auth/register:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                password:
+                  type: string
+      responses:
+        "200":
+          description: User was registered succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: User with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "409":
+          description: User already registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /cohort:
+    get:
+      responses:
+        "200":
+          description: Cohorts were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /cohort/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Cohort ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: Cohort data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      cohortname:
+                        type: string
+                  status:
+                    type: integer
+
+        "404":
+          description: Cohort with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                cohortname:
+                  type: string
+      responses:
+        "200":
+          description: Cohort was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: Cohort was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: Cohort with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /confirmation:
+    get:
+      responses:
+        "200":
+          description: Confirmations were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /confirmation/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Confirmation ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: Confirmation data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      confirmationname:
+                        type: string
+                  status:
+                    type: integer
+
+        "404":
+          description: Confirmation with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                confirmationname:
+                  type: string
+      responses:
+        "200":
+          description: Confirmation was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: Confirmation was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: Confirmation with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /group:
+    get:
+      responses:
+        "200":
+          description: Groups were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /group/studentList/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Group ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: Students were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+        "404":
+          description: Group with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer      
+
+  /group/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Group ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: Group data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      groupname:
+                        type: string
+                      groupprojectID:
+                        type: integer
+                  status:
+                    type: integer
+
+        "404":
+          description: Group with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                groupname:
+                  type: string
+                groupprojectID:
+                  type: integer
+      responses:
+        "200":
+          description: Group was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: Group was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: Group with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /groupmember:
+    get:
+      responses:
+        "200":
+          description: GroupMembers were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /groupmember/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: GroupMember ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: GroupMember data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      groupmemberuserID:
+                        type: integer
+                      groupmembergroupID:
+                        type: integer
+                  status:
+                    type: integer
+
+        "404":
+          description: GroupMember with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                groupmemberuserID:
+                  type: string
+                groupmembergroupID:
+                  type: integer
+      responses:
+        "200":
+          description: GroupMember was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: GroupMember was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: GroupMember with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /like:
+    get:
+      responses:
+        "200":
+          description: Likes were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /like/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Like ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: Like data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      likeaffinityID:
+                        type: integer
+                      likerID:
+                        type: integer
+                      likeeID:
+                        type: integer
+                  status:
+                    type: integer
+
+        "404":
+          description: Like with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                likeaffinityID:
+                  type: integer
+                likerID:
+                  type: integer
+                likeeID:
+                  type: integer
+      responses:
+        "200":
+          description: Like was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: Like was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: Like with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /link:
+    get:
+      responses:
+        "200":
+          description: Links were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /link/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Link ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: Link data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      linkerID:
+                        type: integer
+                      linkeeID:
+                        type: integer
+                      linkprojectID:
+                        type: integer
+                      linkconfirmationID:
+                        type: integer
+                  status:
+                    type: integer
+
+        "404":
+          description: Link with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                linkerID:
+                  type: integer
+                linkeeID:
+                  type: integer
+                linkprojectID:
+                  type: integer
+                linkconfirmationID:
+                  type: integer
+      responses:
+        "200":
+          description: Link was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: Link was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: Link with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /liveliness:
+    get:
+      responses:
+        "200":
+          description: Liveliness was retrived
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      uptime:
+                        type: number
+
+  /module:
+    get:
+      responses:
+        "200":
+          description: Modules were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /module/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Module ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: Module data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      modulename:
+                        type: string
+                      moduleleaderID:
+                        type: integer
+                      modulecohortID:
+                        type: integer
+                  status:
+                    type: integer
+
+        "404":
+          description: Module with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                modulename:
+                  type: string
+                moduleleaderID:
+                  type: integer
+                modulecohortID:
+                  type: integer
+      responses:
+        "200":
+          description: Module was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: Module was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: Module with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /modulemember:
+    get:
+      responses:
+        "200":
+          description: ModuleMembers were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /modulemember/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: ModuleMember ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: ModuleMember data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      modulememberuserID:
+                        type: integer
+                      modulemembermoduleID:
+                        type: integer
+                      modulememberorder:
+                        type: integer
+                  status:
+                    type: integer
+
+        "404":
+          description: ModuleMember with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                modulememberuserID:
+                  type: integer
+                modulemembermoduleID:
+                  type: integer
+                modulememberorder:
+                  type: integer
+      responses:
+        "200":
+          description: ModuleMember was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: ModuleMember was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: ModuleMember with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /project:
+    get:
+      responses:
+        "200":
+          description: Projects were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /project/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Project ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: Project data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      projectname:
+                        type: string
+                      managerID:
+                        type: integer
+                      cohortID:
+                        type: integer
+                  status:
+                    type: integer
+
+        "404":
+          description: Project with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                projectname:
+                  type: string
+                managerID:
+                  type: integer
+                cohortID:
+                  type: integer
+      responses:
+        "200":
+          description: Project was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: Project was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: Project with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /user:
+    get:
+      responses:
+        "200":
+          description: Users were retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: integer
+                      data:
+                        type: array
+
+  /user/byID/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: User ID in database
+        schema:
+          type: integer
+          format: int64
+          minimum: 1
+    get:
+      responses:
+        "200":
+          description: User data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      firstname:
+                        type: string
+                      surname:
+                        type: string
+                      email:
+                        type: string
+                      registered:
+                        type: boolean
+                      cohortID:
+                        type: integer
+                  status:
+                    type: integer
+
+        "404":
+          description: User with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                surname:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                cohortID:
+                  type: integer
+      responses:
+        "200":
+          description: User was created succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+    delete:
+      responses:
+        "200":
+          description: User was deleted succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  status:
+                    type: integer
+        "404":
+          description: User with that ID was not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  /user/search:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pageSize:
+                  type: integer
+                  description: Optional pageSize paramater - default is 50
+                page:
+                  type: integer
+                  description: Optional page paramater - default is 0
+                queries:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      query:
+                        type: string
+                        description: Value on which to perform the database query
+                      field:
+                        type: string
+                        description: Name of the field on which to perform the database query
+      responses:
+        "200":
+          description: User data was retrieved correctly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                      nextPage:
+                        type: boolean
+                      pageSize:
+                        type: integer
+                      results:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            firstname:
+                              type: string
+                            surname:
+                              type: string
+                            email:
+                              type: string
+                            registered:
+                              type: boolean
+                            cohortID:
+                              type: integer
+                  status:
+                    type: integer
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+        "500":
+          description: Error proccessing request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  status:
+                    type: integer
+
+  

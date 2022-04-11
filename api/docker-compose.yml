@@ -1,0 +1,31 @@
+version: "3"
+   
+services:
+    mysql:
+        image: mysql:latest
+        restart: always
+        environment:
+            MYSQL_USER: user
+            MYSQL_PASSWORD: user
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: database
+        ports:
+            - "3306:3306"
+    api:
+        build: .
+        restart: always
+        ports:
+        - "8080:8080"
+        depends_on: 
+            - mysql
+    phpmyadmin:
+        image: phpmyadmin
+        restart: on-failure
+        environment:
+            PMA_HOST: mysql
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+        ports:
+            - 8183:80
+        depends_on: 
+            - mysql

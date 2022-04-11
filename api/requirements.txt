@@ -1,0 +1,8 @@
+Flask
+psutil
+pyjwt<2.0
+cryptography
+gunicorn
+flask_sqlalchemy
+mysql-connector-python
+python-dotenv

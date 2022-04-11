@@ -1,0 +1,10 @@
+.compactcard {
+  background-color: white;
+  border-radius: 10px;
+  margin: 0.5rem;
+  outline-width: 1px;
+  outline-style: solid;
+  outline-color: black;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+}
